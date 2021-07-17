@@ -14,7 +14,7 @@ module.exports = function (sequelize) {
             allowNull: false
         },
         password:{
-            field: 'password',
+            field: 'passward',
             type: DataTypes.STRING(45),
             allowNull: false
         },

@@ -10,11 +10,13 @@ $ npm i ejs
 $ npm i dotenv
 $ npm i mysql2
 $ npm i sequelize
+$ npm i multer
 $ npm i -D nodemon
 $ npm i express-session
 $ npm i moment
 $ npm i winston  //logfile관리 
 $ npm i winston-daily-rotate-file
+
 ```
 
 ## scripts in package.json
@@ -41,7 +43,10 @@ $ npm i winston-daily-rotate-file
     |--- /config
     |--- /logging
     |--- /logs
+    |--- /multer-temporary-store
     |--- /public
+            |--- /assets
+                    |--- /gallery 
     |--- /routes
     |--- /controllers
     |--- /models

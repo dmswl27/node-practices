@@ -71,6 +71,7 @@ module.exports = {
             });
             res.redirect("/");
         }catch(e){
+            // err.name , err.message, err.stack
             next(e);
         }
         
