@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="/assets/css/board.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<%-include('../includes/header')%>
+		<div id="content">
+			<div id="board">
+				<form id="search_form" action="" method="post">
+					<input type="text" id="kwd" name="kwd" value="">
+					<input type="submit" value="찾기">
+				</form>
+				<table class="tbl-ex">
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>조회수</th>
+						<th>작성일</th>
+						<th>&nbsp;</th>
+					</tr>
+					<% 
+						board.forEach(function(board, index) {
+					%>
+					<tr>
+						<td><%=(pagination.totalCount - index) %></td>
+						<% if (board.depth == 0) { %> 
+							<td style="text-align: left; padding-left: <%=board.depth *20 %>px "><a
+								href="/board/view/<%=board.no%>"><%=board.title %></a></td>
+						<%} else { %>
+							<td style="text-align: left; padding-left: <%=board.depth *20%>px"><img
+								src='/assets/images/reply.png' /><a
+								href="/board/view/<%=board.no%>"><%=board.title %></a></td>
+						<% } %>
+						<td><%=board['User.name'] %></td>
+						<td><%=board.hit %></td>
+						<td><%=moment(board.regDate).format('YYYY-MM-DD hh:mm:ss') %></td>
+						<% if (board['User.name'] == req.session.authUser.name){ %>
+						<td><a href="/board/delete/<%=board.no%>" class="del"><img src='/assets/images/recycle.png' /></a></td>
+						<% } %>
+					</tr>
+					<% }) %>
+				</table>
+				<!-- pager 추가 -->
+				<div class="pager">
+                    <ul>
+                            <% if(pagination.page <= 10) {%>
+                                <li>◀</li>
+                            <%} else { %>
+                                <li><a href="/board/<%=pagination.firstPageNo - 10 %>">◀</a></li>
+                            <% } %>
+                            
+                            <% for(let pageNo = pagination.firstPageNo; pageNo < pagination.lastPageNo + 1; pageNo++) { %>
+                                <% if(pageNo == pagination.currentPageNo) {%>
+                                    <li class="selected"><%=pageNo %></li>
+                                <% } else {%>
+                                    <li><a href="/board/<%=pageNo %>"><%=pageNo %></a></li>
+                                <% } %>
+                            <% }%>
+                            
+                            <% if(pagination.firstPageNo + 10 >= pagination.totalPage) { %>
+                                <li>▶</li>
+                            <% } else { %>
+                                <li><a href="/board/<%=pagination.firstPageNo + 10 %>">▶</a></li>
+                            <% }%>
+                    </ul>
+                </div>  
+
+
+				<div class="bottom">
+					<a href="/board/write" id="new-book">글쓰기</a>
+				</div>				
+			</div>
+		</div>
+		<%-include('../includes/navigation')%>
+        <%-include('../includes/footer')%>
+	</div>
+</body>
+</html>

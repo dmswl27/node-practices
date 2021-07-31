@@ -30,7 +30,7 @@ module.exports = {
         });
         
         if(user == null){
-            res.render('user/login', Object.assign(req.body, {
+            res.render('user/login', Object.assign(req.body, { // Object.assign() 메소드는 열거할 수 있는 하나 이상의 출처 객체로부터 대상 객체로 속성을 복사할 때 사용합니다. 대상 객체를 반환합니다.
                 result: 'fail',
                 password: ''    
             }));

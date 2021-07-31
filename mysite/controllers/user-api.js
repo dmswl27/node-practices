@@ -7,7 +7,7 @@ module.exports = {
             const user = await models.User.findOne({
                 atrributes: ['no'],
                 where:{
-                    email: req.query.email || ''
+                    email: req.query.email || ''   // email? xxx 으로 들어오는거는 query 인가 
                 }
             });
             res.send({

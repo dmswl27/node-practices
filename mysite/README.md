@@ -43,6 +43,7 @@ $ npm i winston-daily-rotate-file
     |--- /config
     |--- /logging
     |--- /logs
+            | --- error
     |--- /multer-temporary-store
     |--- /public
             |--- /assets

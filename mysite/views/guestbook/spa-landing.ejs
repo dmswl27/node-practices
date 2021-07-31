@@ -29,6 +29,7 @@ var fetch = function(no) {
 	    return;
 	}
     isFetching = !isFetching;
+    
     $.ajax({
       	url: "/api/guestbook",
         dataType: "json",   
@@ -59,7 +60,7 @@ var fetch = function(no) {
 var addGuestbook = function(){
      
     vo = {}
-    vo.name = $("#input-name").val();
+    vo.name = $("#input-name").val();  // .val()은 양식(form)의 값을 가져오거나 값을 설정하는 메소드입니다.
     if(vo.name == "") {
         messageBox('오류', '이름이 비었습니다.',function(){
 			$("#input-name").focus();
@@ -123,8 +124,7 @@ $(function(){
          addGuestbook();
      });
      $("#btn-fetch").click(function(event){
-         event.preventDefault();
-         console.log('똥글가져오기') 
+         event.preventDefault(); 
          let no = $("#list-guestbook li:last-child").attr("data-no");
          fetch(no);
      });
@@ -132,7 +132,6 @@ $(function(){
      $(document).on("click", "#list-guestbook li a", function(event){
          event.preventDefault();
          let no = $(this).data("no");
-         console.log("드르렁 "+no)
          $("#hidden-no").val(no);
          console.log($("#hidden-no").val());
          deleteDialog.dialog("open");
@@ -195,7 +194,7 @@ $(function(){
             // 2. no 비우기
             // 3. error message 숨기기
             
-            console.log('다이알로그 폼 데이터 정리');
+            console.log('==========다이알로그 폼 데이터 정리========');
             $("#password-delete").val("");
             $("#hidden-no").val("");
             $(".validateTips.error").hide(); 
@@ -215,10 +214,10 @@ $(function(){
             <div id="guestbook">
                 <h1>방명록</h1>
                 <form id="add-form" action="api/guestbook/add" method="post">
-                    <input type="text" id="input-name" placeholder="이름"> <input
-                        type="password" id="input-password" placeholder="비밀번호">
+                    <input type="text" id="input-name" placeholder="이름"> 
+                    <input type="password" id="input-password" placeholder="비밀번호">
                     <textarea id="tx-content" placeholder="내용을 입력해 주세요."></textarea>
-                    <input type="submit" value="조지기" />
+                    <input type="submit" value="🌹🌹🌹" />
                 </form>
  
  
@@ -228,7 +227,7 @@ $(function(){
                 </ul>
  
                 <div style="margin: 20px 0 0 0">
-                    <button id="btn-fetch">똥글 더 가져오기</button>
+                    <button id="btn-fetch">👀👀</button>
                 </div>
  
             </div>
@@ -238,11 +237,9 @@ $(function(){
                 <p class="validateTips normal">작성시 입력했던 비밀번호를 입력하세요.</p>
                 <p class="validateTips error" style="display: none">비밀번호가 틀립니다.</p>
                 <form>
-                    <input type="password" name="password" id="password-delete"
-                        value="" class="text ui-widget-content ui-corner-all"> <input
-                        type="hidden" id="hidden-no" value=""> <input
-                        type="submit" tabindex="-1"
-                        style="position: absolute; top: -1000px">
+                    <input type="password" name="password" id="password-delete" value="" class="text ui-widget-content ui-corner-all"> 
+                    <input type="hidden" id="hidden-no" value=""> 
+                    <input type="submit" tabindex="-1" style="position: absolute; top: -1000px">
                 </form>
             </div>
             
